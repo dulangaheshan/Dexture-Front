@@ -1,10 +1,10 @@
 <br><br>
 <!-- Default form register -->
-<form class="text-center border border-light p-5"  #f="ngForm" (ngSubmit)="SignIn(form.value)" autocomplete="off" [formGroup]="form">
+<form class="text-center border border-light p-5"  #f="ngForm" (ngSubmit)="LogIn(form.value)" autocomplete="off" [formGroup]="form">
   <div class="row">
       <div class="col-md-7"></div>
      <div class="col-md-4">
-     <p class="h4 mb-4">Sign up</p>
+     <p class="h4 mb-4">Log In</p>
       
      <div class="form-check form-check-inline">
          <input type="radio"
@@ -26,6 +26,26 @@
          >
          <label class="form-check-label" for="materialInline2">Buyer</label>
        </div>
+
+       <div class="form-check form-check-inline">
+        <input type="radio" 
+        class="form-check-input" 
+        value=3 
+        formControlName="role"
+       (click)="function(3)"
+        >
+        <label class="form-check-label" for="materialInline2">Agriculturl Officer</label>
+      </div>
+
+      <div class="form-check form-check-inline">
+        <input type="radio" 
+        class="form-check-input" 
+        value=4 
+        formControlName="role"
+       (click)="function(4)"
+        >
+        <label class="form-check-label" for="materialInline2">Admin </label>
+      </div>
  
      <!-- E-mail -->
      <div class="form-row mb-4">

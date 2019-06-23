@@ -9,8 +9,18 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   farmerSignUp(data){
-    console.log(data,"sdsd")
+   // console.log(data,"sdsd")
     return this.http.post("https://localhost:44374/api/farmer",data);
   }
+
+  farmerLogIn(data){
+    // console.log(data,"sdsd")
+    return this.http.post("https://localhost:44374/api/farmer/login",data)
+  }
+
+adminLogin(data){
+  return this.http.post("https://localhost:44374/api/admin/login",data)
+}
+
 
 }

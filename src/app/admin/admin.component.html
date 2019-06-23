@@ -1,3 +1,24 @@
-<p>
-  admin works!
-</p>
+<button (click)="ViewFarmers()" class="btn btn-outline-success my-2 mr-sm-2" >View Farmers</button>
+<div>
+  <br>
+  <div class="card" style="width: 35rem;" *ngFor="let users of data; let i = index">
+      <br>
+    <ul class="list-group list-group-flush">
+    <li>First Name : {{users.firstName}}</li>
+    <li>Last Name : {{users.lastName}}</li>
+    <li>Email : {{users.email}}</li>
+    <li>personalAddress : {{users.personalAddress}}</li>
+    <li>contactNo : {{users.contactNo}}</li>
+    <li>gramaNiladariDivision : {{users.gramaNiladariDivision}}</li>
+    <li>Nic : {{users.nic}}</li>
+    <li>personalAddress : {{users.personalAddress}}</li>
+    <li *ngIf="users.isAccepted">Approved user</li>
+
+    <button (click)="approved(users.farmerId,users)" class="btn btn-outline-success my-2 mr-sm-2" *ngIf="!users.isAccepted">Give approval</button>
+
+   </ul>
+   
+  </div>   
+  <br>
+</div>
+
