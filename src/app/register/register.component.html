@@ -1,0 +1,196 @@
+<br><br>
+<!-- Default form register -->
+<form class="text-center border border-light p-5"  #f="ngForm" (ngSubmit)="SignIn(form.value)" autocomplete="off" [formGroup]="form">
+  <div class="row">
+      <div class="col-md-7"></div>
+     <div class="col-md-4">
+     <p class="h4 mb-4">Sign up</p>
+      
+     <div class="form-check form-check-inline">
+         <input type="radio"
+         class="form-check-input"
+         value=1
+         formControlName="role"
+        (click)="function(1)"
+         >
+         <label class="form-check-label" for="materialInline1">Farmer</label>
+       </div>
+       
+       <!-- Material inline 2 -->
+       <div class="form-check form-check-inline">
+         <input type="radio" 
+         class="form-check-input" 
+         value=2 
+         formControlName="role"
+        (click)="function(2)"
+         >
+         <label class="form-check-label" for="materialInline2">Buyer</label>
+       </div>
+ 
+ 
+ 
+
+     <div class="form-row mb-4">
+         <div class="col">
+             <!--Your name -->
+             <input  type="text" 
+              id="defaultRegisterFormYourName" 
+              class="form-control" 
+              placeholder="FirstName"
+              formControlName="FirstName"
+              [ngClass]="{'is-invalid': form.get('FirstName').touched && form.get('FirstName').invalid}"
+                >
+                <div *ngIf="form.get('FirstName').touched && form.get('FirstName').invalid" class="invalid-feedback">
+                    <div *ngIf="form.get('FirstName').errors.required"> Name is required</div>
+                    <div *ngIf="form.get('FirstName').errors.pattern"></div>
+                  </div>
+         </div>
+     </div> 
+      
+      
+ 
+     <div class="form-row mb-4">
+         <div class="col">
+             <!-- First name -->
+             <input type="text" 
+              id="defaultRegisterFormUsername"
+              class="form-control" 
+              placeholder="LastName"
+              formControlName="LastName"
+              [ngClass]="{'is-invalid': form.get('LastName').touched && form.get('LastName').invalid}"
+              >
+              <div class="invalid-feedback">
+                Enter your Last Name
+            </div>
+         </div>
+     </div>
+     
+ 
+     <!-- E-mail -->
+     <div class="form-row mb-4">
+     <div class="col">
+     <input type="email"   
+       id="defaultRegisterFormEmail" 
+       class="form-control mb-4" 
+       placeholder="Your E-mail"
+       formControlName="Email"
+       [ngClass]="{'is-invalid': form.get('Email').touched && form.get('Email').invalid}"
+       >
+       <div *ngIf="form.get('Email').touched && form.get('Email').invalid" class="invalid-feedback">
+         <div *ngIf="form.get('Email').errors.required">Email Name is required</div>
+         <div *ngIf="form.get('Email').errors.email">Email must be a valid email address</div>
+       </div>
+    </div>
+    </div>
+
+
+    <div class="form-row mb-4">
+      <div class="col">
+      <!-- Password -->
+      <input type="text"  
+       id="defaultRegisterFormPassword" 
+       class="form-control" 
+       placeholder="Nic" 
+       aria-describedby="defaultRegisterFormPasswordHelpBlock"
+       formControlName="Nic"
+       [ngClass]="{'is-invalid': form.get('Nic').touched && form.get('Nic').invalid}"
+       >
+       <div *ngIf="form.get('Nic').touched && form.get('Nic').invalid" class="invalid-feedback">
+          <div *ngIf="form.get('Nic').errors.required">Nic is required</div>
+       </div>
+      </div>
+     </div>
+
+    
+ 
+     <!-- Phone number -->
+     
+     <div class="form-row mb-4">
+         <div class="col">
+             <input type="text" 
+             id="defaultRegisterContect" 
+             class="form-control" 
+             placeholder="Your Contact" 
+             aria-describedby="defaultRegisterFormPhoneHelpBlock"
+             formControlName="ContactNo"
+             [ngClass]="{'is-invalid': form.get('ContactNo').touched && form.get('ContactNo').invalid}"
+              
+             >
+             <div *ngIf="form.get('ContactNo').touched && form.get('ContactNo').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('ContactNo').errors.required">Contact number is required</div>
+                <div *ngIf="form.get('ContactNo').errors.pattern && form.get('ContactNo').errors.minlength && form.get('Contact').errors.maxLength">Invalid number</div>
+            
+             </div>
+         </div>
+     </div>
+     <!-- address -->
+    
+     <div class="form-row mb-4">
+         <div class="col">
+             <input type="text" 
+             id="defaultRegisterPhonePassword" 
+             class="form-control" 
+             placeholder="Your address"
+             aria-describedby="defaultRegisterFormPhoneHelpBlock"
+             formControlName="PersonalAddress"
+             [ngClass]="{'is-invalid': form.get('PersonalAddress').touched && form.get('PersonalAddress').invalid}"
+              >
+              <div class="invalid-feedback">
+                Enter your address
+             </div>
+         </div>
+     </div>
+
+ <div>
+     <div *ngIf="Flag1">
+        <div class="form-row mb-4">
+            <div class="col">
+                <input type="text" 
+                formControlName="GramaNiladariDivision" 
+                id="defaultRegisterPhonePassword" 
+                class="form-control" 
+                placeholder="your Grama Niladari Division"
+                aria-describedby="defaultRegisterFormPhoneHelpBlock"
+                [ngClass]="{'is-invalid': form.get('GramaNiladariDivision').touched && form.get('GramaNiladariDivision').invalid}"
+                 >
+                 <div class="invalid-feedback">
+                   Enter your Grama Niladari Division
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div *ngIf="!options">
+
+    </div>
+  </div>
+ 
+     <div class="form-row mb-4">
+        <div class="col">
+        <!-- Password -->
+        <input type="password"  
+         id="defaultRegisterFormPassword" 
+         class="form-control" 
+         placeholder="Password" 
+         aria-describedby="defaultRegisterFormPasswordHelpBlock"
+         formControlName="Password"
+         [ngClass]="{'is-invalid': form.get('Password').touched && form.get('Password').invalid}"
+         >
+         <div *ngIf="form.get('Password').touched && form.get('Password').invalid" class="invalid-feedback">
+            <div *ngIf="form.get('Password').errors.required">Password is required</div>
+            <div *ngIf="form.get('Password').errors.minlength">Password must be a letaset 6 charector</div>
+         </div>
+        </div>
+       </div>
+
+
+
+    
+ 
+ 
+     <!-- Sign up button -->
+     <button class="btn btn-info my-4 btn-block" type="submit" >Sign in</button>
+  </div>
+ </div>  
+ 
+ </form>

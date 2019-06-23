@@ -1,0 +1,71 @@
+<br><br>
+<!-- Default form register -->
+<form class="text-center border border-light p-5"  #f="ngForm" (ngSubmit)="SignIn(form.value)" autocomplete="off" [formGroup]="form">
+  <div class="row">
+      <div class="col-md-7"></div>
+     <div class="col-md-4">
+     <p class="h4 mb-4">Sign up</p>
+      
+     <div class="form-check form-check-inline">
+         <input type="radio"
+         class="form-check-input"
+         value=1
+         formControlName="role"
+        (click)="function(1)"
+         >
+         <label class="form-check-label" for="materialInline1">Farmer</label>
+       </div>
+       
+       <!-- Material inline 2 -->
+       <div class="form-check form-check-inline">
+         <input type="radio" 
+         class="form-check-input" 
+         value=2 
+         formControlName="role"
+        (click)="function(2)"
+         >
+         <label class="form-check-label" for="materialInline2">Buyer</label>
+       </div>
+ 
+     <!-- E-mail -->
+     <div class="form-row mb-4">
+     <div class="col">
+     <input type="email"   
+       id="defaultRegisterFormEmail" 
+       class="form-control mb-4" 
+       placeholder="Your E-mail"
+       formControlName="Email"
+       [ngClass]="{'is-invalid': form.get('Email').touched && form.get('Email').invalid}"
+       >
+       <div *ngIf="form.get('Email').touched && form.get('Email').invalid" class="invalid-feedback">
+         <div *ngIf="form.get('Email').errors.required">Email Name is required</div>
+         <div *ngIf="form.get('Email').errors.email">Email must be a valid email address</div>
+       </div>
+    </div>
+    </div>
+
+    <div class="form-row mb-4">
+        <div class="col">
+        <!-- Password -->
+        <input type="password"  
+         id="defaultRegisterFormPassword" 
+         class="form-control" 
+         placeholder="Password" 
+         aria-describedby="defaultRegisterFormPasswordHelpBlock"
+         formControlName="Password"
+         [ngClass]="{'is-invalid': form.get('Password').touched && form.get('Password').invalid}"
+         >
+         <div *ngIf="form.get('Password').touched && form.get('Password').invalid" class="invalid-feedback">
+            <div *ngIf="form.get('Password').errors.required">Password is required</div>
+            <div *ngIf="form.get('Password').errors.minlength">Password must be a letaset 6 charector</div>
+         </div>
+        </div>
+       </div>
+
+       <!-- Sign up button -->
+     <button class="btn btn-info my-4 btn-block" type="submit" >Log in</button>
+  </div>
+ </div>  
+ 
+ </form>
+

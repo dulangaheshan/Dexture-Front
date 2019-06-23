@@ -1,0 +1,20 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Dexture</a>
+  <div class="form-inline">
+
+    <button (click)="login()" class="btn btn-outline-success my-2 mr-sm-2" >Log-In</button>
+    <button (click)="signup()" class="btn btn-outline-success my-2 mr-sm-2" >SIgn-Up</button>
+  </div>
+</nav>
+
+<div *ngIf="islogin">
+
+  <app-login></app-login>
+
+</div>
+
+<div *ngIf="issignup">
+
+    <app-register></app-register>
+  
+  </div>
