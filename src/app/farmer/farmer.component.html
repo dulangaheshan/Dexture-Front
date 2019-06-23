@@ -1,7 +1,11 @@
-<button (click)="AddLand()" class="btn btn-outline-success my-2 mr-sm-2" >Log-In</button>
+<button (click)="AddLand()" class="btn btn-outline-success my-2 mr-sm-2" >Add Lands</button>
 
 <div *ngIf="addland">
-  
-  
+  xcxfdf
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+      <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+        (dragEnd)="markerDragEnd($event)"></agm-marker>
+    </agm-map>
+
 
 </div>
