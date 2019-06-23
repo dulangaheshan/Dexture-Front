@@ -65,16 +65,17 @@ export class LoginComponent implements OnInit {
     
   }
 
-  res;
+  res : any;
 LogIn(data){
   if(data.role == "1"){
     this.Auth.farmerLogIn(data)
     .subscribe(data => {
       this.res = data;
-      console.log(this.res)
-      if(this.res){
+      console.log(this.res.farmerId)
+      if(this.res.accepted===false){
         window.alert("Admin Not Approved Yet")
       }else{
+        localStorage.setItem("farmerId",this.res.farmerId)
         let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
           this.router.navigate([returnUrl || "/farmer"]);
       }

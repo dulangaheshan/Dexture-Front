@@ -1,11 +1,60 @@
 <button (click)="AddLand()" class="btn btn-outline-success my-2 mr-sm-2" >Add Lands</button>
+<button (click)="ViewLands()" class="btn btn-outline-success my-2 mr-sm-2" >View Lands</button>
 
 <div *ngIf="addland">
-  xcxfdf
+  Location of Land
   <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
       <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
         (dragEnd)="markerDragEnd($event)"></agm-marker>
     </agm-map>
 
+    <li>Latitude : {{latitude}}</li>
+    <li>Longitude : {{longitude}}</li>
+
+    <form class="text-center border border-light p-5"  #f="ngForm" (ngSubmit)="submitland(form.value)" autocomplete="off" [formGroup]="form">
+
+        <div class="form-row mb-4">
+            <div class="col">
+            <input type="number"   
+              id="defaultRegisterFormEmail" 
+              class="form-control mb-4" 
+              placeholder="Your Land Size in perch"
+              formControlName="Size"
+              [ngClass]="{'is-invalid': form.get('Size').touched && form.get('Size').invalid}"
+              >
+              <div *ngIf="form.get('Size').touched && form.get('Size').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('Size').errors.required">Land size is required</div>
+                <div *ngIf="form.get('Size').errors.email">Land Size must be valid</div>
+              </div>
+           </div>
+           </div>
+           <button class="btn btn-info my-4 btn-block" type="submit" >Add Land</button>
+    </form>
+
+</div>
+
+<div *ngIf="viewlands">
+
+    <div>
+        <br>
+        <div class="card"  *ngFor="let land of lands; let i = index">
+            <br>
+          <ul class="list-group list-group-flush">
+              <agm-map 
+              [latitude]="land.latitude" 
+              [longitude]="land.longitude" 
+              [zoom]="zoom" >
+                <agm-marker 
+                [latitude]="land.latitude" 
+                [longitude]="land.longitude"></agm-marker>
+              </agm-map>
+          <li>Longitude : {{land.longitude}}</li>
+          <li>Latitude : {{land.latitude}}</li>
+          <li>Size : {{land.size}}</li>  
+         </ul>
+         
+        </div>   
+        <br>
+      </div>
 
 </div>

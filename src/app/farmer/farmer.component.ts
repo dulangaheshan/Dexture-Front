@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
+import { LandService } from '../Services/land.service';
 
 
 @Component({
@@ -10,13 +11,14 @@ import { NgForm, FormGroup, FormControl, Validators,FormBuilder } from '@angular
 export class FarmerComponent implements OnInit {
 
   addland = false;
+  viewlands = false;
   latitude: number;
   longitude: number;
   zoom:number;
-  constructor() { }
+  constructor(private Land : LandService) { }
 
   form= new FormGroup({
-    Email:new FormControl('',[Validators.required]),
+    Size:new FormControl('',[Validators.required]),
  })
 
   ngOnInit() {
@@ -37,14 +39,46 @@ export class FarmerComponent implements OnInit {
   }
   AddLand(){
     this.addland=true;
+    this.viewlands=false;
     this.setCurrentLocation();
   }
 
-  markerDragEnd($event: MouseEvent) {
+
+  lands : any;
+
+  ViewLands(){
+    this.addland=false;
+    this.viewlands=true;
+    var  farmerID = localStorage.getItem("farmerId")
+    this.Land.viewLands(farmerID)
+    .subscribe(res=>{
+      this.lands=res
+    })
+  }
+
+  markerDragEnd($event: any) {
     console.log($event);
-    // this.latitude = $event.coords.lat;
-    // this.longitude = $event.coords.lng;
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
     
   }
+  submitland(data){
+    console.log(data,this.latitude,this.longitude)
+    var  farmerID = localStorage.getItem("farmerId")
+    console.log(farmerID)
+    const land = {
+       Size : data.Size,
+       Latitude : this.latitude,
+       Longitude : this.longitude,
+       farmerId : farmerID
+    }
+    
+    console.log(land)
+
+    this.Land.addLand(land)
+    .subscribe(res=>console.log(res))
+
+  }
+  
 
 }
