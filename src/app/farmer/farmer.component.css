@@ -3,3 +3,22 @@ agm-map {
     height: 300px;
     width: 550px;
 }
+.row{
+    width:80%;
+    margin-left:10%;
+    border-bottom: 2px solid rgb(215, 223, 223);
+    padding-bottom:25px;
+}
+.box{
+    border: 4px solid rgb(167, 173, 173);
+    padding:5px 5px 5px 5px;
+     box-shadow: 1px 2px 5px 2px solid rgb(225, 226, 226) ;
+     width: 40%;
+     margin-left: 10%;
+     margin-top: 5%;
+     background-color: white;
+}
+.back{
+    background-color: rgb(183, 241, 125);
+    padding-bottom: 10%;
+}
