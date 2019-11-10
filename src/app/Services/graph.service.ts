@@ -17,7 +17,7 @@ export class GraphService {
 
   getperdiction(year){
 
-    return this.http.post('http://localhost:5000/hello',year)
+    return this.http.post('http://localhost:5000/hello',JSON.stringify(year))
 
   }
 

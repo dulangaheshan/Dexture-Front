@@ -1,16 +1,26 @@
-<div id="Graph" #Graph></div>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+<br/><br/>
+
+<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+
+
+
+
+<br/><br/>
 
 
 
 
 
 
+<input type="text" value="Sydney" [(ngModel)]="year" />
+<button (click)="Prediction(year)" formtarget="_blank">Get Prediction</button>
+<br/>
+<br/>
 
 
-
-
-
-
-
-
-<button (click)="getPerdiction()">hghgjhkj</button>
+<div *ngIf = "predicted">
+    <p>Predicted Sellling Quantity For {{year}} is : {{PredictedSellingQuantity}} </p>
+    <p>Predicted All Quantity For {{year}} is : {{PredictedAllQuantity}}</p>
+</div>

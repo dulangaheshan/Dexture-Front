@@ -1,7 +1,9 @@
 <div class="back"><div class="container">
 <button (click)="AddLand()" style="background-color:rgb(199, 194, 194)" class="btn btn-outline-success my-2 mr-sm-2">Add Lands</button>
 <button (click)="ViewLands()" style="background-color:rgb(199, 194, 194)" class="btn btn-outline-success my-2 mr-sm-2">View Lands</button>
-
+<a [routerLink]="['/graph']" style="background-color:rgb(199, 194, 194)" class="btn btn-outline-success my-2 mr-sm-2">
+  link to user component
+</a>
 <div *ngIf="addland">
   Location of Land
   <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
@@ -111,7 +113,7 @@
 
         <div class="form-row mb-4">
           <div class="col">
-            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="SellingQuantity"
+            <input type="number" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="SellingQuantity"
               formControlName="SellingQuantity"
               [ngClass]="{'is-invalid': form.get('SellingQuantity').touched && form.get('SellingQuantity').invalid}">
             <div *ngIf="form.get('SellingQuantity').touched && form.get('SellingQuantity').invalid"
@@ -124,7 +126,7 @@
 
         <div class="form-row mb-4">
           <div class="col">
-            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="AllQuantity"
+            <input type="number" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="AllQuantity"
               formControlName="AllQuantity"
               [ngClass]="{'is-invalid': form.get('AllQuantity').touched && form.get('AllQuantity').invalid}">
             <div *ngIf="form.get('AllQuantity').touched && form.get('SellingQuantity').invalid"

@@ -122,9 +122,11 @@ farmerDetails:any
     // console.log(harvest)
     this.harvest.addHarvest(harvest,this.landId)
     .subscribe(res=>{
-      console.log(res)
+      window.alert(res)
     })
   }
+
+
   
 
 }
