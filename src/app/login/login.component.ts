@@ -70,7 +70,8 @@ LogIn(data){
   if(data.role == "1"){
     this.Auth.farmerLogIn(data)
     .subscribe(data => {
-      this.res = data;
+      console.log(data)
+      this.res = data['farmer'];
       console.log(this.res.farmerId)
       if(this.res.accepted===false){
         window.alert("Admin Not Approved Yet")

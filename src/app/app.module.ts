@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 
 
 import { AgmCoreModule } from '@agm/core';
+import { GraphComponent } from './graph/graph.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { AgmCoreModule } from '@agm/core';
     FarmerComponent,
     AdminComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,

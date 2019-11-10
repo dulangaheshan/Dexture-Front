@@ -1,60 +1,158 @@
-<button (click)="AddLand()" class="btn btn-outline-success my-2 mr-sm-2" >Add Lands</button>
-<button (click)="ViewLands()" class="btn btn-outline-success my-2 mr-sm-2" >View Lands</button>
+<div class="back"><div class="container">
+<button (click)="AddLand()" style="background-color:rgb(199, 194, 194)" class="btn btn-outline-success my-2 mr-sm-2">Add Lands</button>
+<button (click)="ViewLands()" style="background-color:rgb(199, 194, 194)" class="btn btn-outline-success my-2 mr-sm-2">View Lands</button>
 
 <div *ngIf="addland">
   Location of Land
   <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-      <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-        (dragEnd)="markerDragEnd($event)"></agm-marker>
-    </agm-map>
+    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+      (dragEnd)="markerDragEnd($event)"></agm-marker>
+  </agm-map>
 
-    <li>Latitude : {{latitude}}</li>
-    <li>Longitude : {{longitude}}</li>
+  <li>Latitude : {{latitude}}</li>
+  <li>Longitude : {{longitude}}</li>
 
-    <form class="text-center border border-light p-5"  #f="ngForm" (ngSubmit)="submitland(form.value)" autocomplete="off" [formGroup]="form">
+  <form class="text-center border border-light p-5" #f="ngForm" (ngSubmit)="submitland(form.value)" autocomplete="off"
+    [formGroup]="form">
 
-        <div class="form-row mb-4">
-            <div class="col">
-            <input type="number"   
-              id="defaultRegisterFormEmail" 
-              class="form-control mb-4" 
-              placeholder="Your Land Size in perch"
-              formControlName="Size"
-              [ngClass]="{'is-invalid': form.get('Size').touched && form.get('Size').invalid}"
-              >
-              <div *ngIf="form.get('Size').touched && form.get('Size').invalid" class="invalid-feedback">
-                <div *ngIf="form.get('Size').errors.required">Land size is required</div>
-                <div *ngIf="form.get('Size').errors.email">Land Size must be valid</div>
-              </div>
-           </div>
-           </div>
-           <button class="btn btn-info my-4 btn-block" type="submit" >Add Land</button>
-    </form>
+    <div class="form-row mb-4">
+      <div class="col">
+        <input type="number" id="defaultRegisterFormEmail" class="form-control mb-4"
+          placeholder="Your Land Size in perch" formControlName="Size"
+          [ngClass]="{'is-invalid': form.get('Size').touched && form.get('Size').invalid}">
+        <div *ngIf="form.get('Size').touched && form.get('Size').invalid" class="invalid-feedback">
+          <div *ngIf="form.get('Size').errors.required">Land size is required</div>
+          <div *ngIf="form.get('Size').errors.email">Land Size must be valid</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-info my-4 btn-block" type="submit">Add Land</button>
+  </form>
 
 </div>
 
 <div *ngIf="viewlands">
 
-    <div>
-        <br>
-        <div class="card"  *ngFor="let land of lands; let i = index">
-            <br>
-          <ul class="list-group list-group-flush">
-              <agm-map 
-              [latitude]="land.latitude" 
-              [longitude]="land.longitude" 
-              [zoom]="zoom" >
-                <agm-marker 
-                [latitude]="land.latitude" 
-                [longitude]="land.longitude"></agm-marker>
-              </agm-map>
-          <li>Longitude : {{land.longitude}}</li>
-          <li>Latitude : {{land.latitude}}</li>
-          <li>Size : {{land.size}}</li>  
-         </ul>
-         
-        </div>   
-        <br>
-      </div>
+  <div>
+    <br>
+    <div class="card" *ngFor="let land of lands; let i = index">
+      <br>
+      <ul class="list-group list-group-flush">
+        <agm-map [latitude]="land.latitude" [longitude]="land.longitude" [zoom]="zoom">
+          <agm-marker [latitude]="land.latitude" [longitude]="land.longitude"></agm-marker>
+        </agm-map>
+        <li>Longitude : {{land.longitude}}</li>
+        <li>Latitude : {{land.latitude}}</li>
+        <li>Size : {{land.size}}</li>
+      </ul>
 
+      <button (click)="addHarvest(land)" class="btn btn-outline-success my-2 mr-sm-2">Add Harvest</button>
+
+    </div>
+    <br>
+  </div>
+
+</div>
+<div class="box">
+  <div class="row">
+    <div class="col-sm-6">
+      <b>FirstName</b> </div>
+    <div class="col-sm-6"> {{farmerDetails.firstName}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+     <b> LastName</b></div>
+    <div class="col-sm-6">{{farmerDetails.lastName}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+     <b> Email :</b></div>
+    <div class="col-sm-6">{{farmerDetails.email}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+     <b> Nic </b></div>
+    <div class="col-sm-6">
+      {{farmerDetails.nic}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+     <b> Contact Number</b></div>
+    <div class="col-sm-6">{{farmerDetails.contactNo}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+     <b> Personal Address :</b></div>
+    <div class="col-sm-6">{{farmerDetails.personalAddress}}</div>
+  </div>
+</div>
+
+
+
+<div *ngIf="addHarvestForm">
+
+  <form class="text-center border border-light p-5" #f="ngForm" (ngSubmit)="HarvestSubmit(form.value)"
+    autocomplete="off" [formGroup]="form">
+    <div class="row">
+      <div class="col-md-7"></div>
+      <div class="col-md-4">
+        <p class="h4 mb-4">Log In</p>
+
+        <!-- E-mail -->
+        <div class="form-row mb-4">
+          <div class="col">
+            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Harvest Name"
+              formControlName="Name" [ngClass]="{'is-invalid': form.get('Name').touched && form.get('Name').invalid}">
+            <div *ngIf="form.get('Name').touched && form.get('Name').invalid" class="invalid-feedback">
+              <div *ngIf="form.get('Name').errors.required"> Name is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="SellingQuantity"
+              formControlName="SellingQuantity"
+              [ngClass]="{'is-invalid': form.get('SellingQuantity').touched && form.get('SellingQuantity').invalid}">
+            <div *ngIf="form.get('SellingQuantity').touched && form.get('SellingQuantity').invalid"
+              class="invalid-feedback">
+              <div *ngIf="form.get('SellingQuantity').errors.required"> SellingQuantity is required</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="AllQuantity"
+              formControlName="AllQuantity"
+              [ngClass]="{'is-invalid': form.get('AllQuantity').touched && form.get('AllQuantity').invalid}">
+            <div *ngIf="form.get('AllQuantity').touched && form.get('SellingQuantity').invalid"
+              class="invalid-feedback">
+              <div *ngIf="form.get('AllQuantity').errors.required"> AllQuantity is required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row mb-4">
+          <div class="col">
+            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Year"
+              formControlName="DateTime"
+              [ngClass]="{'is-invalid': form.get('DateTime').touched && form.get('DateTime').invalid}">
+            <div *ngIf="form.get('DateTime').touched && form.get('DateTime').invalid"
+              class="invalid-feedback">
+              <div *ngIf="form.get('DateTime').errors.required"> Date is required</div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Sign up button -->
+        <button class="btn btn-info my-4 btn-block" type="submit">Add Harvest</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+</div>
 </div>
